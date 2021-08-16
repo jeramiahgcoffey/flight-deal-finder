@@ -37,4 +37,3 @@ for destination in sheet_data:
     if flight:
         if flight.price < destination["lowestPrice"]:
             notification_manager = NotificationManager(flight)
-

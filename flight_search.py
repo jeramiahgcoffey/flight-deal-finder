@@ -3,16 +3,17 @@ import os
 import requests
 from flight_data import FlightData
 
-TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
-TEQUILA_KEY = os.environ["TEQUILA_KEY"]
-
 
 class FlightSearch:
+    def __init__(self):
+        self.tequila_endpoint = "https://tequila-api.kiwi.com"
+        self.tequila_key = os.environ["TEQUILA_KEY"]
+
     # Method for updating IATA Code
     def get_city_code(self, city):
-        location_endpoint = f"{TEQUILA_ENDPOINT}/locations/query"
+        location_endpoint = f"{self.tequila_endpoint}/locations/query"
         headers = {
-            "apikey": TEQUILA_KEY,
+            "apikey": self.tequila_key,
         }
         params = {
             "term": city,
@@ -30,9 +31,9 @@ class FlightSearch:
 
     # Method for getting flights available
     def flight_search(self, departure_location, destination_location, minimum_flight_date, maximum_flight_date):
-        flight_endpoint = f"{TEQUILA_ENDPOINT}/v2/search"
+        flight_endpoint = f"{self.tequila_endpoint}/v2/search"
         headers = {
-            "apikey": TEQUILA_KEY
+            "apikey": self.tequila_key
         }
         params = {
             "fly_from": departure_location,
